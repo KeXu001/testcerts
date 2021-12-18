@@ -2,5 +2,6 @@
 *.crt
 *.csr
 *.pfx
+*.pem
 
 data/
