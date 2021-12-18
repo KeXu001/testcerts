@@ -1,0 +1,32 @@
+[ca]
+default_ca = IntermediateCA
+
+[IntermediateCA]
+certificate = IntermediateCA/IntermediateCA.crt
+private_key = IntermediateCA/IntermediateCA.key
+
+x509_extensions = v3_server
+
+data_dir = IntermediateCA/data
+new_certs_dir = $data_dir/certs
+database = $data_dir/index.txt
+serial = $data_dir/serial
+default_md = sha256
+policy = policy_loose
+default_days=365
+
+[policy_loose]
+countryName = optional
+stateOrProvinceName = optional
+localityName = optional
+organizationName = optional
+organizationalUnitName = optional
+commonName = supplied
+emailAddress = optional
+
+[v3_server]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always, issuer:always
+basicConstraints = critical, CA:FALSE
+keyUsage = critical, nonRepudiation, digitalSignature, keyEncipherment, keyAgreement
+extendedKeyUsage = critical, serverAuth
